@@ -1,0 +1,15 @@
+.card{
+    width: 90%;
+    height: 100%;
+  }
+
+.card-header{
+  background-color: rgb(145, 168, 243);
+  }
+
+.card-body{
+  background-color: rgb(116, 144, 235);
+}
+.fa-edit{
+  margin-right: 20px   
+}

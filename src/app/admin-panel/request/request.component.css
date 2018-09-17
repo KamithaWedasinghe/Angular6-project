@@ -1,0 +1,32 @@
+/* .card{
+  width: 90%;
+  height: 100%;
+} */
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  
+  padding: 24px;
+  text-align: center;
+  background-color: rgb(23, 178, 202);
+  color: rgb(27, 15, 15);
+  margin: 20px;
+}
+
+@media screen and (max-width: 1000px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+  }
+}
+h1 {
+  color: green;
+}
+
+.A{
+  margin-top: 62px;
+  height: 164px;
+  padding: 52px;
+
+}

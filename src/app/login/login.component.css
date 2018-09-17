@@ -1,0 +1,31 @@
+/* .bg {
+  background-image: url("mobitel_logo_white.png");
+} */
+
+/* body {
+  background-color: #333300;
+  color: rgb(153, 37, 37);
+ } */
+
+ 
+
+.container {
+  position: absolute;
+  right: 300px;
+  margin: 300px;
+  max-width: 500px;
+  padding: 10px;
+ 
+  
+}
+
+.col-lg-12{
+  margin-left: 120%;
+}
+
+.text-center{
+  margin-left: 25%;
+}
+
+
+

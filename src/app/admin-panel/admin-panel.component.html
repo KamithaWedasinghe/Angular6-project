@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-sm bg-light">
+
+  <!-- Links -->
+  <div class="navbar-nav">
+    
+     <div>
+        <button class="btn btn-info" (click)="onLogoutClick()" ><i class="fas fa-power-off"></i>
+         
+        </button>
+     </div>
+      
+    
+    </div>
+
+</nav>
+
+
+<!--sidebar-->
+
+<div class="row">
+  <div class="col-md-3 col-xs-5 col-sm-3">
+    <ul class="list-group">
+      <li class="list-group-item ">
+        <h5><a class="sidebar-nav" routerLink="request">Dashboard</a></h5>
+      </li>
+      <li class="list-group-item">
+        <h5><a class="sidebar-nav" routerLink="available-users"><i class="far fa-user A"></i>        Admin</a></h5>
+      </li>
+      <li class="list-group-item">
+        <h5><a class="sidebar-nav" routerLink="view-project"><i class="far fa-clipboard A" style="size:15x"></i>   View Project</a></h5>
+      </li>
+      <li class="list-group-item">
+        <h5><a class="sidebar-nav" routerLink="request-accept"><i class="far fa-calendar-check A"></i> Request Accept</a></h5>
+      </li>
+      <li class="list-group-item">
+        <h5><a class="sidebar-nav" routerLink="available-users"><i class="fas fa-angle-double-up A"></i> BOQ file Upload</a></h5>
+      </li>
+      <li class="list-group-item">
+        <h5><a class="sidebar-nav" routerLink="available-users">Supply Management</a></h5>
+      </li>
+      <li class="list-group-item">
+        <h5><a class="sidebar-nav" routerLink="available-users">Supply BOQ Upload</a></h5>
+      </li>
+
+    </ul>
+  </div>
+  <div class="col-md-9 col-xs-7 col-sm-9">
+    <router-outlet></router-outlet>
+  </div>
+</div>

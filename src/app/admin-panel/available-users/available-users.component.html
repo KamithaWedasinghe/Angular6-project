@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="card">
+    <div class="card-header">
+      Sidebar Title
+    </div>
+    <div class="card-body">
+      <div class="list">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let user of users">
+            <div class="row">
+              <div class="col-md-2">
+                <p class="fa fa-user">{{user.name}}</p>
+              </div>
+              <div class="col-md-2">
+                <p>{{user.email}}</p>
+              </div>
+              <div class="col-md-2">
+                <p>{{user.role}}</p>
+              </div>
+              <div class="col-md-2">
+                <p>{{user.organization}}</p>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-danger reject" (click)="deleteUser(user)">Delete</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

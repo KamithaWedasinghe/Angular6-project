@@ -1,0 +1,41 @@
+/* .bg {
+  background-image: url("mobitel_logo_white.png");
+} */
+
+body {
+    background-color: #333300;
+    color: rgb(153, 37, 37);
+   }
+   .row{
+     margin-top: 50px;
+   }
+  
+  
+  
+  .form-container {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    padding-left: 10%;
+    /* background-color: rgb(6, 94, 39); */
+  }
+  .form-control{
+    width: 50px;
+    background-color: #b4b4b4;
+    
+  }
+  .form-control :focus{
+   outline: none;
+  }
+  form{
+    
+    padding: 10px;
+    padding-left: 20px;
+    
+  }
+  .form-group{
+    width: 75%;
+  }
+  .btn{
+    margin-left: 25%;
+  }

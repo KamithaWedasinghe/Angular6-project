@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="card">
+    <div class="card-header">
+      Sidebar Title
+    </div>
+    <div class="card-body">
+      <div class="list">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let supplier of suppliers" >
+            <div class="row">
+              <div class="col-md-8">
+                <p>{{supplier.name}}</p>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-success accept" (click)="accept(supplier)">Accept</button>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-danger reject" (click)="reject(supplier)">Reject</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

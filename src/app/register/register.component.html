@@ -1,0 +1,89 @@
+<div class="row">
+    <div class="col-xs-12 col-md-12 col-sm-12 ">
+        <form role="form" #register="ngForm" class="form-container" (submit)="registerUser(register)">
+
+            <div class="form-group">
+                <label for="InputName">Enter Type</label>
+                <div class="input-group">
+                    <select name="type" class="form-control" [(ngModel)]="type" id="type" #select (click)="showOrganization(select)" required >
+                        <option value="supplier"   >Supplier</option>
+
+                        <option value="admin" selected>Admin</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="InputName">Enter Name</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" name="InputName" [(ngModel)]="InputName" id="InputName" placeholder="Enter Name"
+                        required>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-asterisk"></span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="InputEmail">Enter Email</label>
+                <div class="input-group">
+                    <input type="email" class="form-control" [(ngModel)]="InputEmail" id="InputEmail" name="InputEmail" placeholder="Enter Email"
+                        required>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-asterisk"></span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="InputPassword">Password</label>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="InputPassword" [(ngModel)]="InputPassword" name="InputPassword" placeholder="Password"
+                        required>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-asterisk"></span>
+                    </span>
+                    <!-- <div *ngIf="userForm.get('last_name').hasError('minLength')">password required Min length than 5</div> -->
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="InputPassword">Confirm Password</label>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" placeholder="Confirm Password"
+                        required>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-asterisk"></span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group" *ngIf="showOrganizationFeild">
+                <label for="InputOrganization">Organization</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="InputOrganization" [(ngModel)]="InputOrganization" name="InputOrganization" placeholder="InputOrganization"
+                        required>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-asterisk"></span>
+                    </span>
+                </div>
+            </div>
+            <!-- <div class="form-group">
+                  <label for="InputMessage">Enter Message</label>
+                  <div class="input-group">
+                      <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required></textarea>
+                      <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                  </div>
+              </div> -->
+            <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-success ">
+
+
+        </form>
+        <!-- <div class="col-lg-5 col-md-push-1">
+          <div class="col-md-12">
+              <div class="alert alert-success">
+                  <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
+              </div>
+              <div class="alert alert-danger">
+                  <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>
+              </div>
+          </div> -->
+        <!-- </div> -->
+    </div>
+</div>
