@@ -1,0 +1,307 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <img src="assets/1.jpg" class="img-responsive" alt="" />
+  <p align="center">Admin</p>
+
+  <div class="margin">
+    <a class="A" (click)="showBOQ()">
+      <font>Contract BOQ</font>
+    </a>
+
+
+
+
+    <a class="A" (click)="open(content)">
+      <font>Create</font>
+    </a>
+
+
+
+    <a class="A ex5" (click)="showSummary()">
+      <font>Summary</font>
+    </a>
+
+  </div>
+
+
+
+  <button class="btnLg" (click)="logOut()">
+    <i class="fas fa-power-off"></i>
+  </button>
+</nav>
+
+<!-- <nav class="navbarA"> -->
+<!-- <div class="row">
+    <div class="col-4">
+      
+        <button class="list-group-item card-img-overlay DD" (click)="showBOQ()">
+          <a class="A"> <i class="fas fa-file-image"></i> Contract BOQ</a>
+        </button>
+      
+    </div>
+    
+    <div class="col-4">
+      
+        <button class="list-group-item card-img-overlay DD" (click)="open(content)">
+          <a class="A"><i class="fas fa-plus"></i> Create</a>
+        </button>
+      
+    </div>
+    <div class="col-4">
+      
+        <button class="list-group-item card-img-overlay DD" (click)="showSummary()">
+          <a class="A">Summary</a>
+        </button>
+      
+    </div>
+  </div> -->
+
+
+<!-- </nav> -->
+
+
+
+
+
+<div class="row top">
+  <div class="col-sm-3 ">
+    <ul class="list-group ">
+      <li class="list-group item" *ngFor="let stage of stageNames">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="card P">
+              <div class="dropdown">
+                <!-- <span (mouseover)="getProjectName(projectn)"> -->
+                <span (mouseover)="getStageName(stage.stageName)">
+                  <a class="B">{{stage.stageName}}</a>
+                </span>
+                <div class="dropdown-content">
+                  <ul class="list-group">
+                    <li class="list-group item" *ngFor="let area of stage.areas">
+                      <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                          aria-expanded="false" (click)="getAreaName(area.areaName)">
+                          <a class="B">{{area.areaName}}</a>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                          <button class="dropdown-item" type="button" name="supply" #supply (click)="getTypeName(supply.name)">
+                            <a class="B">Supply</a>
+                          </button>
+                          <button class="dropdown-item" type="button" name="implimentation" #implimentation (click)="getTypeName(implimentation.name)">
+                            <a class="B">Implimentation</a>
+                          </button>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <span class="card P B" (click)="open(content2)">Create New Project</span>
+  </div>
+
+
+
+  <div class="col-sm-9" *ngIf="!viewSummary">
+    <ul class="list-group">
+      <li class="list-group-item C">
+        <div class="row ">
+          <div class="col-sm-3">
+            <a>Name</a>
+          </div>
+          <div class="col-sm-3">
+            <a>Type</a>
+          </div>
+          <div class="col-sm-3">
+              <a>Area</a>
+          </div>
+          <div class="col-sm-3">
+
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item" *ngFor="let project of projectList">
+        <div class="row">
+          <div class="col-sm-3">
+            <a class="D">{{project.name}}</a>
+          </div>
+          <div class="col-sm-3">
+            <a class="D">{{project._id}}</a>
+          </div>
+          <div class="col-sm-3">
+
+          </div>
+          <div class="col-sm-3">
+            <button class="btn btn-success">Edit</button>
+            <button class="btn btn-danger" (click)="deleteProject(project._id)">Delete</button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+
+
+  <!-- <div class="row" *ngIf="viewSummary"> -->
+  <div class="col-sm-9" *ngIf="viewSummary">
+    summary go there
+    <!-- </div> -->
+  </div>
+</div>
+
+<div class="col-md-9 col-xs-7 col-sm-9">
+  <router-outlet></router-outlet>
+</div>
+
+
+<!-- popup for create -->
+
+<ng-template #content let-d="dismiss">
+
+
+  <div class="container">
+    <div class="modal-header">
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="row" id="pwd-container">
+      <div class="col-md-2"></div>
+
+      <div class="col-md-8">
+        <section class="login-form">
+          <form role="login" #create="ngForm" (ngSubmit)="createProject(create);d('Cross click')">
+            <div class="form-group row">
+              <label class="col-sm-6 col-form-label">Project Name</label>
+              <div class="col-sm-6">
+                <!-- <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com"> -->
+                <input type="text" class="form-control-plaintext" name="stageName" [(ngModel)]="stageName" class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-6 col-form-label">Select Area</label>
+              <div class="col-sm-5">
+                <select name="area" class="form-control" [(ngModel)]="areaName" id="area" placeholder="Project">
+                  <option *ngFor="let area of areas" value="{{area.areaName}}"> {{area.areaName}} </option>
+                  <!-- <option value="civic" selected="true">CVIC</option>
+                  <option value="ran" selected="true">RAN</option>
+                  <option value="oss" selected="true">OSS</option>
+                  <option value="vas" selected="true">VAS</option>
+                  <option value="civic" selected="true">CVIC</option> -->
+                </select>
+              </div>
+              <div class="col-sm-1">
+                <i class="fas fa-plus-square" (click)="open(content1)"></i>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-6 col-form-label">Select Type</label>
+              <div class="col-sm-6">
+                <select name="type" class="form-control" [(ngModel)]="type" id="type" placeholder="type">
+                  <option value="implement" selected="true">Implimentaion </option>
+                  <option value="supply" selected="true">Supply</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-6 col-form-label">Upload BOQ</label>
+              <div class="col-sm-6">
+                <!-- <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com"> -->
+                <!-- <input type="file" (change)="upload($event)" name="uploadFile" [(ngModel)]="uploadFile" class="form-control" placeholder="uploadFile"> -->
+                <input type="text" name="uploadFile" [(ngModel)]="uploadFile" class="form-control" placeholder="uploadFile">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+
+          </form>
+        </section>
+      </div>
+
+    </div>
+  </div>
+</ng-template>
+<!-- popup -->
+
+<!-- pop up for create area -->
+
+<ng-template #content1 let-d="dismiss">
+
+  <div class="container">
+    <div class="modal-header">
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="row" id="pwd-container">
+      <div class="col-md-2"></div>
+
+      <div class="col-md-8">
+        <section class="login-form">
+          <form role="login" class="A" #add="ngForm" (ngSubmit)="createArea(add);d('Cross click')">
+            <div class="form-group row">
+              <label class="col-sm-6 col-form-label">Area Name</label>
+              <div class="col-sm-6">
+                <!-- <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com"> -->
+                <input type="text" class="form-control-plaintext" name="areaName" [(ngModel)]="areaName" class="form-control">
+              </div>
+            </div>
+
+
+
+            <button type="submit" class="btn btn-primary">Save</button>
+
+          </form>
+        </section>
+      </div>
+
+    </div>
+  </div>
+
+</ng-template>
+
+<!-- pop up for create area -->
+
+<!-- pop up for create new project -->
+
+<ng-template #content2 let-d="dismiss">
+
+  <div class="container">
+    <div class="modal-header">
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="row" id="pwd-container">
+      <div class="col-md-2"></div>
+
+      <div class="col-md-8">
+        <section class="login-form">
+          <form role="login" class="" #newProject="ngForm" (ngSubmit)="createNewStage(newProject);d('Cross click')">
+            <div class="form-group row">
+              <!-- <label class="col-sm-6 col-form-label">Project Name</label> -->
+              <p class="B">Project Name</p>
+              <div class="col-sm-6">
+                <!-- <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com"> -->
+                <input type="text" class="form-control-plaintext" name="stageName" [(ngModel)]="stageName" class="form-control">
+              </div>
+            </div>
+
+
+
+            <button type="submit" class="btn btn-primary">Save</button>
+
+          </form>
+        </section>
+      </div>
+
+    </div>
+  </div>
+
+</ng-template>
+<!-- pop up for create new project -->

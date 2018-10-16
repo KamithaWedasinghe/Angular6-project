@@ -5,7 +5,7 @@
 
     <div class="col-md-4">
       <section class="login-form">
-        <form role="login" #register="ngForm" (ngSubmit)="registerUser(register)"  class="A">
+        <form   role="login" class="A"  #register="ngForm" (ngSubmit)="registerUser(register)">
 
           <input type="text" name="firstname" [(ngModel)]="firstname"  class="form-control" placeholder="Enter First Name">
 
@@ -17,7 +17,7 @@
 
           <input type="password" name="password" [(ngModel)]="password"  class="form-control" placeholder="Enter Password">
 
-          <input type="password" name="password" [(ngModel)]="confirmpassword"  (keyup)="onKeyUp($event)" class="form-control" placeholder="Confirm Password">
+          <input type="password" name="confirmpassword" [(ngModel)]="confirmpassword" (keyup)="onKeyUp($event)" class="form-control" placeholder="Confirm Password">
 
           <label for="" *ngIf="!passwordMatch">Password Does Not Match</label>
 
@@ -26,13 +26,11 @@
           <div class="row">
 
             <div class="col-6">
-              <button type="submit" name="go" class="btn btn-lg btn-primary btn-block" (click)="back()">Back</button>
+              <button type="button" class="btn btn-lg btn-primary btn-block" (click)="back()">Back</button>
             </div>
-
             <div class="col-6">
-              <button type="submit" name="go" class="btn btn-lg btn-primary btn-block" >Register</button>
+              <button type="submit" class="btn btn-lg btn-primary btn-block" >Register</button>
             </div>
-
 
 
           </div>

@@ -1,15 +1,19 @@
+import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-// import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+
+
+
+
+
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-register-contrctor',
+  templateUrl: './register-contrctor.component.html',
+  styleUrls: ['./register-contrctor.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterContrctorComponent implements OnInit {
 
   constructor(private router: Router,
     private http: HttpClient) { }
@@ -24,18 +28,8 @@ export class RegisterComponent implements OnInit {
   mobile: string = '';
   password: string = '';
   confirmpassword: string = '';
-  values = '';
 
   passwordMatch: boolean = false;
-
-  // clear() {
-  //   this.firstname = null;
-  //   this.lastname = null;
-  //   this.email = null;
-  //   this.tp = null;
-  //   this.password = null;
-  //   this.confirmpassword = null;
-  //   }
 
   back() {
     this.router.navigate(['/login']);
@@ -44,8 +38,8 @@ export class RegisterComponent implements OnInit {
   registerUser(form) {
     console.log(form.value);
 
-    let obj1 : registerModel = {
-      role: 1,
+    let obj: registerModel = {
+      role: 2,
       firstname: form.value.firstname,
       lastname: form.value.lastname,
       email: form.value.email,
@@ -53,14 +47,14 @@ export class RegisterComponent implements OnInit {
       password: form.value.password,
 
     }
-    console.log(obj1);
+    console.log(obj);
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     }
 
-    this.http.post("http://localhost:3000/user/register", obj1, httpOptions).subscribe(
+    this.http.post("http://localhost:3000/user/register", obj, httpOptions).subscribe(
       (data) => {
         console.log(data);
 
@@ -69,29 +63,23 @@ export class RegisterComponent implements OnInit {
 
           this.router.navigate(['/login']);
         } else {
-          this.router.navigate(['/login']);
+
         }
       });
-    }
-
-    
-    onKeyUp(event: any) {
-
-      if (this.password.length == 8) {
-        if (this.confirmpassword == this.password) {
-          console.log("jgjyguyg");
-          this.passwordMatch = true;
-        }
-
-        else {
-          this.passwordMatch = false;
-        }
+  }
+  onKeyUp(event: any) {
+    if (this.password.length == 8) {
+      if (this.confirmpassword == this.password) {
+        console.log("jgjyguyg");
+        this.passwordMatch = true;
       }
 
-        
-    };
+      else {
+        this.passwordMatch = false;
+      }
+    }
+  };
 
-    
 
 }
 export interface registerModel {
@@ -101,7 +89,5 @@ export interface registerModel {
   email: String;
   mobile: String;
   password: String;
-  
+
 }
-
-

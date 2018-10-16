@@ -6,12 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'my-app';
-
-  onClick() {
-    console.log('welcome');
-
-  }
+  title = 'mobitel';
 }
-
-

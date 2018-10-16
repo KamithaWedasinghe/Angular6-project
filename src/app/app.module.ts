@@ -1,103 +1,84 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+// import { Router } from "@angular/router";
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-
-import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { AdminPanelComponent } from './admin-panel/admin-panel.component';
-// import { AppRoutingModule } from './/app-routing.module';
-
-import { RequestComponent } from './admin-panel/request/request.component';
-import { ValidateService } from './services/validate.service';
-import { AuthService } from './services/auth.service';
-import { HttpClientModule } from '@angular/common/http';
-import { ViewProjectComponent } from './admin-panel/view-project/view-project.component';
-import { RequestAcceptComponent } from './admin-panel/request-accept/request-accept.component';
-import { FileUploadComponent } from './admin-panel/file-upload/file-upload.component';
-import { AvailableUsersComponent } from './admin-panel/available-users/available-users.component';
-//import { CreateNewProjectComponent } from './admin-panel/view-project/create-new-project/create-new-project.component';
-
-
+import { RegisterComponent } from './register/register.component';
+import { RegisterContrctorComponent } from './register-contrctor/register-contrctor.component';
+import { AdminComponent } from './admin/admin.component';
+import { SupplierComponent } from './supplier/supplier.component';
+import { BoqListComponent } from './admin/boq-list/boq-list.component';
+import { NewBOQComponent } from './admin/new-boq/new-boq.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-
-    RegisterComponent,
-
     LoginComponent,
-
-    AdminPanelComponent,
-
-    RequestComponent,
-
-    ViewProjectComponent,
-
-    RequestAcceptComponent,
-
-    FileUploadComponent,
-
-    AvailableUsersComponent,
-
-    //CreateNewProjectComponent
+    RegisterComponent,
+    RegisterContrctorComponent,
+    AdminComponent,
+    SupplierComponent,
+    BoqListComponent,
+    NewBOQComponent
   ],
   imports: [
     BrowserModule,
-    // AppRoutingModule,
+    NgbModule,
+    NgbPaginationModule, 
+    NgbAlertModule,
     FormsModule,
     HttpClientModule,
+
     RouterModule.forRoot([
       {
         path: 'login',
         component: LoginComponent
       },
+
       {
         path: 'register',
         component: RegisterComponent
       },
 
       {
-        path: 'admin-panel',
-        component: AdminPanelComponent,
-        children: [
+        path: 'register-contrctor',
+        component: RegisterContrctorComponent
+      },
+
+      {
+        path: 'admin',
+        component: AdminComponent,
+        children:[
           {
-            path: 'request',
-            component: RequestComponent
-
-          }, {
-            path: 'view-project',
-            component: ViewProjectComponent
-           
-
+            path: 'new-boq',
+            component: NewBOQComponent
           },
-          {
-            path: 'request-accept',
-            component: RequestAcceptComponent
 
-          },
           {
-            path: 'file-upload',
-            component: FileUploadComponent
-
-          },
-          {
-            path: 'available-users',
-            component: AvailableUsersComponent
-
+            path: 'boq-list',
+            component: BoqListComponent
           }
         ]
       },
 
       {
+        path: 'supplier',
+        component: SupplierComponent
+      },
+
+      {
         path: '', redirectTo: '/login', pathMatch: 'full'
       }
-
     ])
+    
   ],
-  providers: [ValidateService, AuthService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
