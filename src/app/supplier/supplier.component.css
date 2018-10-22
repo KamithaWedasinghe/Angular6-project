@@ -1,31 +1,29 @@
 .navbar{
-    background-image: linear-gradient(to right,rgb(48, 216, 174), rgb(26, 114, 214));
-    height: 45px;
-    
-    
-    /* background-color: rgb(44, 32, 218); */
-    
+  background-image: linear-gradient(to right,rgb(34, 11, 245), rgb(17, 14, 247));
+  height: 45px;
+  margin-top: 5px;
   
-  }
-  .navbarA{
-    background-image: linear-gradient(to right,rgb(123, 228, 202), rgb(14, 231, 177));
-    height: 120px;
-    
-    
-    
-    /* background-color: rgb(44, 32, 218); */
-    
   
-  }
+  /* background-color: rgb(44, 32, 218); */
+  
 
-  .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    
-    padding: 24px;
-    text-align: center;
-    background-color: rgb(23, 178, 202);
-    color: rgb(27, 15, 15);
-    margin: 20px;
-  }
+}
+.navbarA{
+  /* background-image: linear-gradient(to right,rgb(158, 198, 243), rgb(144, 176, 236)); */
+  background-color: #bdc9ff;
+  height: 108px;
+}
 
- 
+.img-responsive{
+  width: 14%;
+  margin: 33px;
+  padding: 10px;
+}
+
+p {
+  color: rgb(240, 236, 231);
+  font-size: 1.5em;
+  font-style: italic;
+  font-weight: 1000;
+  
+}

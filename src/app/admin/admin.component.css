@@ -54,18 +54,32 @@
     background-color: rgb(102, 85, 255);
   }
 
-  .fas{
-    background-color: rgb(102, 85, 255);
-    /* margin-left: 980px; */
-  }
 
   .container{
     padding: 10px;
   }
-
   .fa-plus-square{
-    color:  rgb(134, 61, 218);
+    color: red;
+    margin-left: 10px;
   }
+
+  h4{
+    margin-left: 10px;
+  }
+
+  .fontL{
+    font-size: 1.2em;
+    font-weight: 500;
+  }
+
+  .fontSideBar{
+    font-size: 1.2em;
+    font-weight: 500;
+    background-color: #7eadeb;
+    
+  }
+
+
 
   .P{
     background-color: rgb(162, 187, 240);
@@ -170,7 +184,10 @@ a.ex5:hover, a.ex5:active {
 .margin{
   margin-left: 10px;
 }
-
+.list-group-item {
+  padding-left: 20px;
+  padding-bottom: 0px;
+}   
 
 
  

@@ -1,9 +1,13 @@
+import { ViewDetailService } from './new-boq/view-detail.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpHeaders } from '@angular/common/http';
 import { Subscriber } from 'rxjs/internal/Subscriber';
+import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
+
+const uri = 'http://localhost:3000/upload';
 
 @Component({
   selector: 'app-admin',
@@ -11,27 +15,42 @@ import { Subscriber } from 'rxjs/internal/Subscriber';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
+  passData: Object;
   stageNames: any;
   stageName: any;
   areas: any;
   areaName: any;
+  prjectArea;
+  projectType;
+  projectName;
+
+  projectList = [];
+
+
+  viewSummary: boolean = false;
 
 
   constructor(private router: Router,
     config: NgbModalConfig,
     private http: HttpClient,
-    private modalService: NgbModal) {
+    private modalService: NgbModal,
+    private viewDetailService: ViewDetailService) {
     config.backdrop = 'static';
     config.keyboard = false;
+    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+      this.attachmentList.push(JSON.parse(response));
+
+    }
   }
 
   ngOnInit() {
     this.showBOQ();
-    this.getStage()
-
+    this.getStage();
   }
 
-  viewSummary: boolean = false;
+  uploader: FileUploader = new FileUploader({ url: uri });
+
+  attachmentList: any = [];
 
   onClick() {
     console.log("sdvwsd");
@@ -43,8 +62,6 @@ export class AdminComponent implements OnInit {
     this.getAreas();
   }
 
-
-
   createProject(form) {
     console.log(form.value);
 
@@ -53,7 +70,7 @@ export class AdminComponent implements OnInit {
       stageName: form.value.stageName,
       areaName: form.value.areaName,
       type: form.value.type,
-      uploadFile: this.file,
+      boqFileName: form.value.boqFileName
 
     }
     console.log(obj1);
@@ -70,16 +87,13 @@ export class AdminComponent implements OnInit {
         this.showBOQ();
 
       });
-
-
-
   }
   file: File;
   upload(event) {
     this.file = event.target.files[0];
   }
 
-  projectList = [];
+
 
 
   showBOQ() {
@@ -99,6 +113,25 @@ export class AdminComponent implements OnInit {
       });
 
     this.viewSummary = false;
+  }
+
+  viewBoqFile(boqFile) {
+    let obj: boqFileName = {
+      boqName: boqFile
+    }
+
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    console.log(obj)
+    this.http.post("http://localhost:3000/view", obj, httpOptions).subscribe(
+      (data) => {
+        console.log(data);
+        this.viewDetailService.data = data;
+        this.router.navigateByUrl("/admin/new-boq");
+      });
   }
 
   deleteProject(id) {
@@ -122,19 +155,52 @@ export class AdminComponent implements OnInit {
     this.viewSummary = true;
   }
 
-
-
-  prjectArea;
-  projectType;
-  projectName;
-
-  getStageName(stageName){
+  getStageName(stageName) {
     console.log(stageName);
+    this.projectName = stageName;
+
+    let obj3: projectStageSort = {
+      projectName: this.projectName
+    }
+    console.log(obj3);
+
+    // let httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json'
+    //   })
+    // }
+
+    // this.http.post("http://localhost:3000/project/sort", obj3, httpOptions).subscribe(
+    //   (data) => {
+    //     console.log(data);
+    //     this.projectList = data['result'];
+
+    //   });
   }
 
   getAreaName(areaName) {
     console.log(areaName);
     this.prjectArea = areaName;
+
+    let obj3: projectAreaSort = {
+      projectName: this.projectName,
+      prjectArea: this.prjectArea
+
+    }
+    console.log(obj3);
+
+    // let httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json'
+    //   })
+    // }
+
+    // this.http.post("http://localhost:3000/project/sort", obj3, httpOptions).subscribe(
+    //   (data) => {
+    //     console.log(data);
+    //     this.projectList = data['result'];
+
+    //   });
   }
 
   getTypeName(type) {
@@ -142,28 +208,24 @@ export class AdminComponent implements OnInit {
     this.projectType = type;
 
     let obj: projectDetails = {
-      projectName: this.stageName,
-      projectArea: this.areaName,
-      ProjectType: this.projectType
+      projectName: this.projectName,
+      projectArea: this.prjectArea,
+      projectType: this.projectType
     }
-console.log(obj)
+    console.log(obj)
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     }
 
-    // this.http.post("http://localhost:3000/", obj, httpOptions).subscribe(
-    //   (data) => {
+    this.http.post("http://localhost:3000/project/sort", obj, httpOptions).subscribe(
+      (data) => {
+        console.log(data);
+        this.projectList = data['result'];
 
-    //   });
+      });
   }
-
-  // getProjectName(projectN) {
-  //   console.log(projectN);
-  //   this.projectName = projectN;
-  // }
-
 
   logOut() {
     this.router.navigate(['/login']);
@@ -190,8 +252,6 @@ console.log(obj)
   }
 
   getAreas() {
-
-
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -218,7 +278,7 @@ console.log(obj)
       })
     }
 
-    this.http.post("http://localhost:3000/project/stage", obj, httpOptions).subscribe(
+    this.http.post("http://localhost:3000/stage", obj, httpOptions).subscribe(
       (data) => {
         console.log(data);
         this.getStage();
@@ -231,32 +291,29 @@ console.log(obj)
         'Content-Type': 'application/json',
       })
     }
-    this.http.get("http://localhost:3000/project/stage", httpOptions).subscribe(
+    this.http.get("http://localhost:3000/stage", httpOptions).subscribe(
       (data) => {
-        console.log(data, "data");
-         this.stageNames = data['stage'];
-         console.log(this.stageNames)
-      }
-    )
+        console.log(data, "data stage");
+        this.stageNames = data['stage'];
+        console.log(this.stageNames)
+      });
   }
 
 }
-
-
 
 export interface uploadModel {
 
   stageName: String;
   areaName: String;
   type: String;
-  uploadFile: File;
+  boqFileName: String;
 
 }
 
 export interface projectDetails {
   projectName: String;
   projectArea: String;
-  ProjectType: String;
+  projectType: String;
 }
 
 export interface addArea {
@@ -266,4 +323,19 @@ export interface addArea {
 export interface addNewProject {
   stageName: String;
 }
+
+export interface projectStageSort {
+  projectName: String;
+}
+
+export interface projectAreaSort {
+  projectName: String;
+  prjectArea: String;
+}
+
+export interface boqFileName {
+  boqName: String;
+}
+
+
 

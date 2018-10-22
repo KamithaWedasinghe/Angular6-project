@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { ViewDetailService } from './view-detail.service';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-new-boq',
@@ -7,55 +7,27 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
   styleUrls: ['./new-boq.component.css']
 })
 export class NewBOQComponent implements OnInit {
+  list: any = [];
 
-  constructor(private http: HttpClient) { }
+
+  constructor(
+    private viewDetailService: ViewDetailService
+  ) { }
 
   ngOnInit() {
+    this.list = this.data['data']['0']['dataList']
   }
 
-  createProject(form) {
-    console.log(form.value);
 
-    let obj1 : uploadModel = {
-      
-      projectName: form.value.projectName,
-      area: form.value.area,
-      type: form.value.type,
-      uploadFile: this.file,
+  public data = this.viewDetailService.data;
 
-    }
-    console.log(obj1);
-    let httpOptions = {
-      headers : new HttpHeaders({
-        'Content-Type':'application/json'
-      })
-    }
-  
-    this.http.post("http://localhost:3000/project/add", obj1,httpOptions).subscribe(
-      (data) => {
-        console.log(data);
-  
-        if (data['sucess'] == "user is added successfully")  {
-  
-        } else {
-          
-        }
 
-      });
-  
-
+  selectSheet(name){
+   this.data['data'].forEach(element => {
+      if (element.sheetName === name) {
+        this.list = element['dataList'];
+      }
+    });
   }
-  file : File;
-  upload(event){
-    this.file  = event.target.files[0];
-  }
-
 }
-export interface uploadModel {
-  
-  projectName: String;
-  area: String;
-  type: String;
-  uploadFile: File;
-  
-}
+

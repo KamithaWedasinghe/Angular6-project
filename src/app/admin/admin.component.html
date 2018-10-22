@@ -2,24 +2,22 @@
   <img src="assets/1.jpg" class="img-responsive" alt="" />
   <p align="center">Admin</p>
 
-  <div class="margin">
-    <a class="A" (click)="showBOQ()">
-      <font>Contract BOQ</font>
-    </a>
-
-
-
-
-    <a class="A" (click)="open(content)">
-      <font>Create</font>
-    </a>
-
-
-
-    <a class="A ex5" (click)="showSummary()">
-      <font>Summary</font>
-    </a>
-
+  <div class="row margin">
+    <div class="col-3">
+      <a class="A" (click)="showBOQ()">
+        <font>Contract BOQ</font>
+      </a>
+    </div>
+    <div class="col-3">
+      <a class="A" (click)="open(content)">
+        <font>Upload BOQ</font>
+      </a>
+    </div>
+    <div class="col-3">
+      <a class="A ex5" (click)="showSummary()">
+        <font>Summary</font>
+      </a>
+    </div>
   </div>
 
 
@@ -107,18 +105,21 @@
 
   <div class="col-sm-9" *ngIf="!viewSummary">
     <ul class="list-group">
-      <li class="list-group-item C">
-        <div class="row ">
+      <li class="list-group-item fontSideBar">
+        <div class="row">
           <div class="col-sm-3">
-            <a>Name</a>
+            <a class="">Name</a>
           </div>
           <div class="col-sm-3">
-            <a>Type</a>
+            <a class="">Area</a>
           </div>
-          <div class="col-sm-3">
-              <a>Area</a>
+          <div class="col-sm-2">
+            <a class="">Type</a>
           </div>
-          <div class="col-sm-3">
+          <div class="col-sm-2">
+              <a class="">BOQ Name</a>
+          </div>
+          <div class="col-sm-2">
 
           </div>
         </div>
@@ -126,22 +127,26 @@
       <li class="list-group-item" *ngFor="let project of projectList">
         <div class="row">
           <div class="col-sm-3">
-            <a class="D">{{project.name}}</a>
+            <a class="D">{{project.stageName}}</a>
           </div>
           <div class="col-sm-3">
-            <a class="D">{{project._id}}</a>
+            <a class="D">{{project.areaName}}</a>
           </div>
-          <div class="col-sm-3">
-
+          <div class="col-sm-2">
+            <a class="D">{{project.type}}</a>
           </div>
-          <div class="col-sm-3">
-            <button class="btn btn-success">Edit</button>
+          <div class="col-sm-2">
+              <a class="D">{{project.boqFileName}}</a>
+            </div>
+          <div class="col-sm-2">
+            <button class="btn btn-success" (click)="viewBoqFile(project.boqFileName)">View</button>
             <button class="btn btn-danger" (click)="deleteProject(project._id)">Delete</button>
           </div>
         </div>
       </li>
     </ul>
   </div>
+
 
 
 
@@ -164,56 +169,62 @@
 
   <div class="container">
     <div class="modal-header">
+      <h4>ADD BOQ FILE</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
 
     <div class="row" id="pwd-container">
-      <div class="col-md-2"></div>
+      <div class="col-md-1"></div>
 
       <div class="col-md-8">
         <section class="login-form">
           <form role="login" #create="ngForm" (ngSubmit)="createProject(create);d('Cross click')">
             <div class="form-group row">
-              <label class="col-sm-6 col-form-label">Project Name</label>
+              <label class="col-sm-6 col-form-label fontL">Stage Name</label>
               <div class="col-sm-6">
+                <select name="stageName" class="form-control" [(ngModel)]="stageName" placeholder="Project">
+                  <option *ngFor="let stage of stageNames" value="{{stage.stageName}}"> {{stage.stageName}} </option>
+                </select>
                 <!-- <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com"> -->
-                <input type="text" class="form-control-plaintext" name="stageName" [(ngModel)]="stageName" class="form-control">
+                <!-- <input type="text" class="form-control-plaintext" name="stageName" [(ngModel)]="stageName" class="form-control"> -->
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-6 col-form-label">Select Area</label>
-              <div class="col-sm-5">
-                <select name="area" class="form-control" [(ngModel)]="areaName" id="area" placeholder="Project">
+              <label class="col-sm-6 col-form-label fontL">Select Area
+                <i class="far fa-plus-square" (click)="open(content1)"></i>
+
+              </label>
+              <div class="col-sm-6">
+                <select name="areaName" class="form-control" [(ngModel)]="areaName" id="area" placeholder="Project">
                   <option *ngFor="let area of areas" value="{{area.areaName}}"> {{area.areaName}} </option>
-                  <!-- <option value="civic" selected="true">CVIC</option>
-                  <option value="ran" selected="true">RAN</option>
-                  <option value="oss" selected="true">OSS</option>
-                  <option value="vas" selected="true">VAS</option>
-                  <option value="civic" selected="true">CVIC</option> -->
                 </select>
               </div>
-              <div class="col-sm-1">
+              <!-- <div class="col-sm-1">
                 <i class="fas fa-plus-square" (click)="open(content1)"></i>
-              </div>
+              </div> -->
             </div>
             <div class="form-group row">
-              <label for="inputPassword" class="col-sm-6 col-form-label">Select Type</label>
+              <label for="inputPassword" class="col-sm-6 col-form-label fontL">Select Type</label>
               <div class="col-sm-6">
                 <select name="type" class="form-control" [(ngModel)]="type" id="type" placeholder="type">
-                  <option value="implement" selected="true">Implimentaion </option>
+                  <option value="implimentation" selected="true">Implimentation </option>
                   <option value="supply" selected="true">Supply</option>
                 </select>
               </div>
             </div>
+
             <div class="form-group row">
-              <label for="staticEmail" class="col-sm-6 col-form-label">Upload BOQ</label>
+              <label class="col-sm-6 col-form-label fontL">BOQ Name</label>
               <div class="col-sm-6">
-                <!-- <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com"> -->
-                <!-- <input type="file" (change)="upload($event)" name="uploadFile" [(ngModel)]="uploadFile" class="form-control" placeholder="uploadFile"> -->
-                <input type="text" name="uploadFile" [(ngModel)]="uploadFile" class="form-control" placeholder="uploadFile">
+                <input type="text" class="form-control-plaintext" name="boqFileName" [(ngModel)]="boqFileName" class="form-control">
               </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-6 col-form-label fontL">Upload BOQ</label>
+              <app-boq-list></app-boq-list>
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
 
@@ -232,6 +243,7 @@
 
   <div class="container">
     <div class="modal-header">
+      <h4>ADD NEW AREA</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -242,9 +254,11 @@
 
       <div class="col-md-8">
         <section class="login-form">
-          <form role="login" class="A" #add="ngForm" (ngSubmit)="createArea(add);d('Cross click')">
+          <form role="login" #add="ngForm" (ngSubmit)="createArea(add);d('Cross click')">
             <div class="form-group row">
-              <label class="col-sm-6 col-form-label">Area Name</label>
+              <label class="col-sm-6 col-form-label">
+                <h5>Area Name</h5>
+              </label>
               <div class="col-sm-6">
                 <!-- <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com"> -->
                 <input type="text" class="form-control-plaintext" name="areaName" [(ngModel)]="areaName" class="form-control">

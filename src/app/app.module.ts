@@ -7,6 +7,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -15,6 +16,7 @@ import { AdminComponent } from './admin/admin.component';
 import { SupplierComponent } from './supplier/supplier.component';
 import { BoqListComponent } from './admin/boq-list/boq-list.component';
 import { NewBOQComponent } from './admin/new-boq/new-boq.component';
+import { FileUploadModule } from 'ng2-file-upload/file-upload/file-upload.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { NewBOQComponent } from './admin/new-boq/new-boq.component';
     NgbAlertModule,
     FormsModule,
     HttpClientModule,
+    FileUploadModule,  
 
     RouterModule.forRoot([
       {
@@ -58,12 +61,12 @@ import { NewBOQComponent } from './admin/new-boq/new-boq.component';
           {
             path: 'new-boq',
             component: NewBOQComponent
-          },
-
-          {
-            path: 'boq-list',
-            component: BoqListComponent
           }
+
+          // {
+          //   path: 'boq-list',
+          //   component: BoqListComponent
+          // }
         ]
       },
 
