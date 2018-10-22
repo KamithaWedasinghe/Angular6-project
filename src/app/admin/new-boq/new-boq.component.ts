@@ -15,11 +15,12 @@ export class NewBOQComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.list = this.data['data']['0']['dataList']
+    this. data = this.viewDetailService.data;
+    this.list = this.data['data']['0']['dataList'];
   }
 
 
-  public data = this.viewDetailService.data;
+  public data : any;
 
 
   selectSheet(name){
