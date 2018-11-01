@@ -1,0 +1,7 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <img src="assets/1.jpg" class="img-responsive" alt="" />
+  <p *ngIf="role['result'] == 1" align="center">Admin</p> 
+  <p *ngIf="role['result'] == 2" align="center">Supplier</p>
+  <i class="fas fa-power-off" (click)="logOut()"></i> 
+</nav>
+<router-outlet></router-outlet>

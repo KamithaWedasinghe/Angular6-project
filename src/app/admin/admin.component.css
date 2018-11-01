@@ -1,29 +1,6 @@
-.navbar{
-    background-image: linear-gradient(to right,rgb(34, 11, 245), rgb(17, 14, 247));
-    height: 45px;
-    margin-top: 5px;
-    
-    
-    /* background-color: rgb(44, 32, 218); */
-    
-  
-  }
-  .navbarA{
-    /* background-image: linear-gradient(to right,rgb(158, 198, 243), rgb(144, 176, 236)); */
-    background-color: #bdc9ff;
-    height: 108px;
-  }
 
-  /* .navbarB{
-    background-image: linear-gradient(to right,rgb(123, 228, 202), rgb(14, 231, 177));
-    height: 50px;
-    
-    
-    
-    background-color: rgb(44, 32, 218);
-    
+
   
-  } */
 
   .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -119,32 +96,32 @@
   margin-top: -1px;
 }
 
-.img-responsive{
+/* .img-responsive{
   width: 14%;
   margin: 33px;
   padding: 10px;
-}
+} */
 
 p {
-  color: rgb(240, 236, 231);
+  color: rgb(27, 16, 2);
   font-size: 1.5em;
   font-style: italic;
   font-weight: 1000;
   
 }
 
-font{
+/* font{
   color: rgb(243, 240, 237);
-}
+} */
 
 .A{
   
   font-size: 0.75em;
   font-style: italic;
   font-weight: 500;
-  margin: 15px;
+  /* margin: 15px; */
   /* margin-left: 404px; */
-  color: rgb(243, 240, 237);
+  color: rgb(41, 22, 3);
 
 
 }
@@ -188,6 +165,13 @@ a.ex5:hover, a.ex5:active {
   padding-left: 20px;
   padding-bottom: 0px;
 }   
+.CBOQ-margin{
+  margin-left: 240px;
+}
+.smry-margin{
+      margin-left: -253px;
+}
+
 
 
  

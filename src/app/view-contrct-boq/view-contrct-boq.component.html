@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col">
+    <ul class="list-group">
+      <li class="list-group-item fontSideBar">
+        <div class="row">
+          <div class="col-sm-3">
+            <a class="">BOQ No</a>
+          </div>
+          <div class="col-sm-3">
+            <a class="">BOQ Reference</a>
+          </div>
+          <div class="col-sm-2">
+            <a class="">Discription</a>
+          </div>
+          <div class="col-sm-2">
+            <a class="">Engineer Name</a>
+          </div>
+          <div class="col-sm-2">
+
+          </div>
+        </div>
+      </li>
+      <li class="list-group-item" *ngFor="let contractBOQ of contractBOQList">
+        <div class="row">
+          <div class="col-sm-3">
+            <a class="D">{{contractBOQ.boqNo}}</a>
+          </div>
+          <div class="col-sm-3">
+            <a class="D">{{contractBOQ.boqRef}}</a>
+          </div>
+          <div class="col-sm-2">
+            <a class="D">{{contractBOQ.discription}}</a>
+          </div>
+          <div class="col-sm-2">
+            <a class="D">{{contractBOQ.engineerName}}</a>
+          </div>
+          <div class="col-sm-2">
+            <button class="btn btn-success" (click)="viewContrctBoqFile(contractBOQ.selectListItems)">View</button>
+
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="col">
+      <table class="table table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Segment</th>
+              <th scope="col">Country</th>
+              <th scope="col">Year</th>
+              <th scope="col">Date</th>
+            </tr>
+          </thead>
+          <tbody class="table-light">
+            <tr *ngFor="let list of contractBOQListTable">
+              <td>{{list.Segment}}</td>
+              <td>{{list.Country}}</td>
+              <td>{{list.Year}}</td>
+              <td>{{list.Date}}</td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+</div>

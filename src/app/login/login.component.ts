@@ -69,10 +69,11 @@ export class LoginComponent implements OnInit {
     this.http.post("http://localhost:3000/user/login", obj1,httpOptions).subscribe(
       (data) => {
         console.log(data);
+        localStorage.setItem("user", JSON.stringify(data))
         if (data['result'] === 1 ) {
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/home/admin']);
         } else {
-          this.router.navigate(['/supplier']);
+          this.router.navigate(['/home/supplier']);
         }
         this.clear();
       });

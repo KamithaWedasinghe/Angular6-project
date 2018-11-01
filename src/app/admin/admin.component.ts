@@ -15,7 +15,9 @@ const uri = 'http://localhost:3000/upload';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  passData: Object;
+  contractBOQList= [];
+
+  // passData: Object;
   stageNames: any;
   stageName: any;
   areas: any;
@@ -27,7 +29,7 @@ export class AdminComponent implements OnInit {
   projectList = [];
 
 
-  viewSummary: boolean = false;
+  viewContractBOQ: boolean = false;
 
 
   constructor(private router: Router,
@@ -56,6 +58,8 @@ export class AdminComponent implements OnInit {
     console.log("sdvwsd");
     this.router.navigate(['/admin/new-boq']);
   }
+
+
 
   open(content) {
     this.modalService.open(content);
@@ -112,7 +116,7 @@ export class AdminComponent implements OnInit {
 
       });
 
-    this.viewSummary = false;
+    this.viewContractBOQ = false;
   }
 
   viewBoqFile(boqFile) {
@@ -130,7 +134,7 @@ export class AdminComponent implements OnInit {
       (data) => {
         console.log(data);
         this.viewDetailService.data = data;
-        this.router.navigateByUrl("/admin/new-boq");
+        this.router.navigateByUrl("/home/new-boq");
       });
   }
 
@@ -151,8 +155,8 @@ export class AdminComponent implements OnInit {
 
   }
 
-  showSummary() {
-    this.viewSummary = true;
+  showContractBOQ() {
+    this.viewContractBOQ = true;
   }
 
   getStageName(stageName) {
@@ -227,9 +231,7 @@ export class AdminComponent implements OnInit {
       });
   }
 
-  logOut() {
-    this.router.navigate(['/login']);
-  }
+
 
   createArea(form) {
     console.log(form.value);

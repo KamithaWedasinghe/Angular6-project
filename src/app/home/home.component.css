@@ -1,0 +1,50 @@
+.navbar{
+    background-image: linear-gradient(to right,rgb(34, 11, 245), rgb(17, 14, 247));
+    height: 45px;
+    margin-top: 5px;
+    
+    
+    /* background-color: rgb(44, 32, 218); */
+    
+  
+  }
+  .navbarA{
+    /* background-image: linear-gradient(to right,rgb(158, 198, 243), rgb(144, 176, 236)); */
+    background-color: #bdc9ff;
+    height: 108px;
+  }
+  
+  .img-responsive{
+    width: 14%;
+    margin: 33px;
+    padding: 10px;
+  }
+
+  p {
+    color: rgb(240, 236, 231);
+    font-size: 1.5em;
+    font-style: italic;
+    font-weight: 1000;
+    
+  }
+
+  .margin{
+    margin-left: 10px;
+  }
+
+  .A{
+  
+    font-size: 0.75em;
+    font-style: italic;
+    font-weight: 500;
+    margin: 15px;
+    /* margin-left: 404px; */
+    color: rgb(243, 240, 237);
+  
+  
+  }
+
+  .fa-power-off{
+    margin-left: 1110px;
+  }
+

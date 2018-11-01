@@ -1,27 +1,11 @@
-<div class="row A">
-  <div class="col-sm-8">
-    <table class="table table-hover">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Segment</th>
-          <th scope="col">Country</th>
-          <th scope="col">Year</th>
-          <th scope="col">Date</th>
-        </tr>
-      </thead>
-      <tbody class="table-light">
-        <tr *ngFor="let dat of list">
-          <td>{{dat.Segment}}</td>
-          <td>{{dat.Country}}</td>
-          <td>{{dat.Year}}</td>
-          <td>{{dat.Date}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<div class="row B">
+  <i class="fas fa-arrow-left" (click)="backToPrevious()"> Back</i>
+</div>
 
-  <div class="col-sm-3">
-    <ul>
+<div class="row A">
+
+  <div class="col-sm-3 marginA">
+    <ul class="">
       <li class="list-group-item" *ngFor="let name of data['data']">
         <!-- <a (click)="selectSheet(name.sheetName)">{{name.sheetName}}</a> -->
         <button class="btn" [ngClass]="{ 'btn-add': isAddButton, 'btn-remove': !isAddButton  }" (click)="selectSheet(name.sheetName)">{{name.sheetName}}
@@ -30,4 +14,36 @@
     </ul>
   </div>
 
+  <div class="col-sm-8 marginB">
+    <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Segment</th>
+          <th scope="col">Country</th>
+          <th scope="col">Year</th>
+          <th scope="col">Date</th>
+          <!-- <th scope="col">Select</th> -->
+        </tr>
+      </thead>
+      <tbody class="table-light">
+        <tr *ngFor="let dat of list">
+          <td>{{dat.Segment}}</td>
+          <td>{{dat.Country}}</td>
+          <td>{{dat.Year}}</td>
+          <td>{{dat.Date}}</td>
+          <!-- <td>
+              <input type="checkbox"  [checked]="dat.checked" (change)="change($event, dat)">
+          </td> -->
+        </tr>
+
+
+
+        
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row C">
+  <button class="btn btn-success-sm" type="submit" (click)="clear()">Clear All</button>
+  <button class="btn btn-success-sm" type="submit">Submit</button>  
 </div>

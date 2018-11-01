@@ -17,6 +17,8 @@ import { SupplierComponent } from './supplier/supplier.component';
 import { BoqListComponent } from './admin/boq-list/boq-list.component';
 import { NewBOQComponent } from './admin/new-boq/new-boq.component';
 import { FileUploadModule } from 'ng2-file-upload/file-upload/file-upload.module';
+import { HomeComponent } from './home/home.component';
+import { ViewContrctBOQComponent } from './view-contrct-boq/view-contrct-boq.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { FileUploadModule } from 'ng2-file-upload/file-upload/file-upload.module
     AdminComponent,
     SupplierComponent,
     BoqListComponent,
-    NewBOQComponent
+    NewBOQComponent,
+    HomeComponent,
+    ViewContrctBOQComponent
   ],
   imports: [
     BrowserModule,
@@ -55,25 +59,39 @@ import { FileUploadModule } from 'ng2-file-upload/file-upload/file-upload.module
       },
 
       {
-        path: 'admin',
-        component: AdminComponent,
+        path: 'home',
+        component: HomeComponent,
         children:[
           {
             path: 'new-boq',
             component: NewBOQComponent
-          }
+          },
 
-          // {
-          //   path: 'boq-list',
-          //   component: BoqListComponent
-          // }
+          {
+            path: 'supplier',
+            component: SupplierComponent
+          },
+
+          {
+            path: 'admin',
+            component: AdminComponent,
+            children:[
+              
+    
+              // {
+              //   path: 'boq-list',
+              //   component: BoqListComponent
+              // }
+            ]
+          },
+
         ]
       },
 
-      {
-        path: 'supplier',
-        component: SupplierComponent
-      },
+      
+      
+
+      
 
       {
         path: '', redirectTo: '/login', pathMatch: 'full'

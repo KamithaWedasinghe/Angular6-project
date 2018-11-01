@@ -1,10 +1,200 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <img src="assets/1.jpg" class="img-responsive" alt="" />
-        <p align="center">Supplier</p>
-      
-</nav>
-<div class="row">
-        <div class="col">
-                <p>kamitha</p>
+<!-- stage names -->
+<div class="row top" *ngIf="!viewBOQDetails">
+        <div class="col-sm-3 ">
+                <ul class="list-group ">
+                        <li class="list-group item" *ngFor="let stage of stageNames">
+                                <div class="row">
+                                        <div class="col-sm-3">
+                                                <div class="card P">
+                                                        <div class="dropdown">
+
+                                                                <span (mouseover)="getStageName(stage.stageName)">
+                                                                        <a class="B">{{stage.stageName}}</a>
+                                                                </span>
+                                                                <div class="dropdown-content">
+                                                                        <ul class="list-group">
+                                                                                <li class="list-group item" *ngFor="let area of stage.areas">
+                                                                                        <div class="dropdown">
+                                                                                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                                                                                                        aria-expanded="false" (click)="getAreaName(area.areaName)">
+                                                                                                        <a class="B">{{area.areaName}}</a>
+                                                                                                </button>
+                                                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                                                                        <button class="dropdown-item" type="button" name="supply" #supply (click)="getTypeName(supply.name)">
+                                                                                                                <a class="B">Supply</a>
+                                                                                                        </button>
+                                                                                                        <button class="dropdown-item" type="button" name="implimentation" #implimentation (click)="getTypeName(implimentation.name)">
+                                                                                                                <a class="B">Implimentation</a>
+                                                                                                        </button>
+                                                                                                </div>
+                                                                                        </div>
+                                                                                </li>
+                                                                        </ul>
+                                                                </div>
+                                                        </div>
+
+                                                </div>
+                                        </div>
+                                </div>
+                        </li>
+                </ul>
+
+
+        </div>
+
+        <div class="col-sm-9">
+                <ul class="list-group">
+                        <li class="list-group-item fontSideBar">
+                                <div class="row">
+                                        <div class="col-sm-3">
+                                                <a class="">Name</a>
+                                        </div>
+                                        <div class="col-sm-3">
+                                                <a class="">Area</a>
+                                        </div>
+                                        <div class="col-sm-2">
+                                                <a class="">Type</a>
+                                        </div>
+                                        <div class="col-sm-2">
+                                                <a class="">BOQ Name</a>
+                                        </div>
+                                        <div class="col-sm-2">
+
+                                        </div>
+                                </div>
+                        </li>
+                        <li class="list-group-item" *ngFor="let project of projectList">
+                                <div class="row">
+                                        <div class="col-sm-3">
+                                                <a class="D">{{project.stageName}}</a>
+                                        </div>
+                                        <div class="col-sm-3">
+                                                <a class="D">{{project.areaName}}</a>
+                                        </div>
+                                        <div class="col-sm-2">
+                                                <a class="D">{{project.type}}</a>
+                                        </div>
+                                        <div class="col-sm-2">
+                                                <a class="D">{{project.boqFileName}}</a>
+                                        </div>
+                                        <div class="col-sm-2">
+                                                <button class="btn btn-success" (click)="viewBoqFile(project.boqFileName)">View</button>
+                                        </div>
+                                </div>
+                        </li>
+                </ul>
         </div>
 </div>
+<!-- stage names -->
+<!-- <router-outlet></router-outlet> -->
+<!-- boq file view -->
+
+<div class="row A" *ngIf="viewBOQDetails">
+
+        <div class="col-sm-3 marginA">
+                <i class="fas fa-arrow-left" (click)="backToPrevious()"> Back</i>
+                <ul class="">
+                        <li class="list-group-item" *ngFor="let name of data['data']">
+                                <!-- <a (click)="selectSheet(name.sheetName)">{{name.sheetName}}</a> -->
+                                <button class="btn" [ngClass]="{ 'btn-add': isAddButton, 'btn-remove': !isAddButton  }" (click)="selectSheet(name.sheetName)">{{name.sheetName}}
+                                </button>
+                        </li>
+                </ul>
+        </div>
+
+        <div class="col-sm-8 marginB">
+                <table class="table table-hover">
+                        <thead class="thead-dark">
+                                <tr>
+                                        <th scope="col">Segment</th>
+                                        <th scope="col">Country</th>
+                                        <th scope="col">Year</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Select</th>
+                                </tr>
+                        </thead>
+                        <tbody class="table-light">
+                                <tr *ngFor="let dat of list">
+                                        <td>{{dat.Segment}}</td>
+                                        <td>{{dat.Country}}</td>
+                                        <td>{{dat.Year}}</td>
+                                        <td>{{dat.Date}}</td>
+                                        <td>
+                                                <input type="checkbox" [checked]="dat.checked" (change)="change($event, dat)">
+                                        </td>
+                                </tr>
+
+
+
+
+                        </tbody>
+                </table>
+                <div class="row C">
+                        <button class="btn btn-success-sm" type="submit" (click)="clear()">Clear All</button>
+                        <button class="btn btn-success-sm" type="submit" (click)="submit();open(content)">Submit</button>
+                </div>
+        </div>
+</div>
+
+<!-- boq file view -->
+
+<!-- pop up for submit -->
+<ng-template #content let-d="dismiss">
+
+        <div class="container">
+                <div class="modal-header">
+                        <h4>Submit Selected</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+
+                <div class="row" id="pwd-container">
+                        <div class="col-md-2"></div>
+
+                        <div class="col-md-8">
+                                <section class="login-form">
+                                        <form role="login" class="" #selectItems="ngForm" (ngSubmit)="supplierSelection(selectItems);d('Cross click')">
+                                                <div class="form-group row">
+                                                        <label class="col-sm-6 col-form-label fontL">BOQ No</label>
+                                                        <div class="col-sm-6">
+                                                                <input type="text" class="form-control-plaintext" name="boqNo" [(ngModel)]="boqNo" class="form-control">
+                                                        </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                        <label class="col-sm-6 col-form-label fontL">BOQ Reference</label>
+                                                        <div class="col-sm-6">
+                                                                <input type="text" class="form-control-plaintext" name="boqRef" [(ngModel)]="boqRef" class="form-control">
+                                                        </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                        <label class="col-sm-6 col-form-label fontL">Discription</label>
+                                                        <div class="col-sm-6">
+                                                                <input type="text" class="form-control-plaintext" name="discription" [(ngModel)]="discription" class="form-control">
+                                                        </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                        <label class="col-sm-6 col-form-label fontL">Engineer Name</label>
+                                                        <div class="col-sm-6">
+                                                                <input type="text" class="form-control-plaintext" name="engineerName" [(ngModel)]="engineerName" class="form-control">
+                                                        </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                        <label for="staticEmail" class="col-sm-6 col-form-label fontL">Attachment</label>
+                                                        <app-boq-list></app-boq-list>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Save</button>
+
+                                        </form>
+                                </section>
+                        </div>
+
+                </div>
+        </div>
+
+</ng-template>
+<!-- pop up for submit -->

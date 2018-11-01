@@ -1,8 +1,33 @@
 .A{
     /* margin: 25px; */
     margin-left: 350px;
-    padding-top: 20px;
+    padding-top: 52px;
 }
 .btn-add{
     background-color: aqua;
+}
+
+.marginA{
+    margin-left: -350px;
+}
+
+.marginB{
+    margin-left: 60px;
+}
+
+.B{
+    /* margin: 12px; */
+    margin-left: 260px;
+}
+
+.fas{
+    padding-top: 10px;
+}
+
+.C{
+    margin-left: 950px;
+    
+}
+.btn{
+    margin: 5px;
 }

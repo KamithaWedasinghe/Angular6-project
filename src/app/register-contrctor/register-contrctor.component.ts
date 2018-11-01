@@ -58,7 +58,7 @@ export class RegisterContrctorComponent implements OnInit {
       (data) => {
         console.log(data);
 
-        if (data['sucess'] == "user is added successfully") {
+        if (data['status']) {
 
 
           this.router.navigate(['/login']);

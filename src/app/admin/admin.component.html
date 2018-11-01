@@ -1,64 +1,33 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <img src="assets/1.jpg" class="img-responsive" alt="" />
-  <p align="center">Admin</p>
+  <p align="center">Admin</p> -->
 
-  <div class="row margin">
-    <div class="col-3">
-      <a class="A" (click)="showBOQ()">
-        <font>Contract BOQ</font>
-      </a>
-    </div>
-    <div class="col-3">
-      <a class="A" (click)="open(content)">
-        <font>Upload BOQ</font>
-      </a>
-    </div>
-    <div class="col-3">
-      <a class="A ex5" (click)="showSummary()">
-        <font>Summary</font>
-      </a>
-    </div>
+<div class="row margin">
+  <div class="col-3">
+    <a class="A" (click)="showBOQ()">
+      <font class="CBOQ-margin">BOQ List</font>
+    </a>
   </div>
+  <div class="col-3">
+    <a class="A" (click)="open(content)">
+      <font>Upload BOQ</font>
+    </a>
+  </div>
+  <div class="col-3">
+    <a class="A ex5" (click)="showContractBOQ()">
+      <font class="smry-margin">Contract BOQ</font>
+    </a>
+  </div>
+</div>
 
 
 
-  <button class="btnLg" (click)="logOut()">
-    <i class="fas fa-power-off"></i>
-  </button>
-</nav>
-
-<!-- <nav class="navbarA"> -->
-<!-- <div class="row">
-    <div class="col-4">
-      
-        <button class="list-group-item card-img-overlay DD" (click)="showBOQ()">
-          <a class="A"> <i class="fas fa-file-image"></i> Contract BOQ</a>
-        </button>
-      
-    </div>
-    
-    <div class="col-4">
-      
-        <button class="list-group-item card-img-overlay DD" (click)="open(content)">
-          <a class="A"><i class="fas fa-plus"></i> Create</a>
-        </button>
-      
-    </div>
-    <div class="col-4">
-      
-        <button class="list-group-item card-img-overlay DD" (click)="showSummary()">
-          <a class="A">Summary</a>
-        </button>
-      
-    </div>
-  </div> -->
-
-
+<!-- <button class="btnLg" (click)="logOut()">
+  <i class="fas fa-power-off" ></i>
+</button> -->
 <!-- </nav> -->
 
-
-
-
+<!-- <app-home></app-home> -->
 
 <div class="row top">
   <div class="col-sm-3 ">
@@ -98,12 +67,12 @@
         </div>
       </li>
     </ul>
-    <span class="card P B" (click)="open(content2)">Create New Project</span>
+    <span class="card P B" (click)="open(content2)">Create New Stage</span>
   </div>
 
 
 
-  <div class="col-sm-9" *ngIf="!viewSummary">
+  <div class="col-sm-9" *ngIf="!viewContractBOQ">
     <ul class="list-group">
       <li class="list-group-item fontSideBar">
         <div class="row">
@@ -117,7 +86,7 @@
             <a class="">Type</a>
           </div>
           <div class="col-sm-2">
-              <a class="">BOQ Name</a>
+            <a class="">BOQ Name</a>
           </div>
           <div class="col-sm-2">
 
@@ -136,8 +105,8 @@
             <a class="D">{{project.type}}</a>
           </div>
           <div class="col-sm-2">
-              <a class="D">{{project.boqFileName}}</a>
-            </div>
+            <a class="D">{{project.boqFileName}}</a>
+          </div>
           <div class="col-sm-2">
             <button class="btn btn-success" (click)="viewBoqFile(project.boqFileName)">View</button>
             <button class="btn btn-danger" (click)="deleteProject(project._id)">Delete</button>
@@ -150,15 +119,17 @@
 
 
 
-  <!-- <div class="row" *ngIf="viewSummary"> -->
-  <div class="col-sm-9" *ngIf="viewSummary">
-    summary go there
-    <!-- </div> -->
+ 
+  <div class="col-sm-9" *ngIf="viewContractBOQ">
+    <app-view-contrct-boq></app-view-contrct-boq>
+    
   </div>
 </div>
 
 <div class="col-md-9 col-xs-7 col-sm-9">
-  <router-outlet></router-outlet>
+  <!-- <router-outlet></router-outlet> -->
+  <!-- <app-new-boq ></app-new-boq> -->
+
 </div>
 
 
@@ -280,12 +251,13 @@
 
 <!-- pop up for create area -->
 
-<!-- pop up for create new project -->
+<!-- pop up for create new stage -->
 
 <ng-template #content2 let-d="dismiss">
 
   <div class="container">
     <div class="modal-header">
+      <h4>Add New Stage</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -299,7 +271,7 @@
           <form role="login" class="" #newProject="ngForm" (ngSubmit)="createNewStage(newProject);d('Cross click')">
             <div class="form-group row">
               <!-- <label class="col-sm-6 col-form-label">Project Name</label> -->
-              <p class="B">Project Name</p>
+              <p class="B">Stage Name</p>
               <div class="col-sm-6">
                 <!-- <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com"> -->
                 <input type="text" class="form-control-plaintext" name="stageName" [(ngModel)]="stageName" class="form-control">
@@ -318,4 +290,4 @@
   </div>
 
 </ng-template>
-<!-- pop up for create new project -->
+<!-- pop up for create new stage -->
